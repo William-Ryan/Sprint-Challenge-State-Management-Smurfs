@@ -4,7 +4,10 @@ import {
     FETCH_FAIL,
     POST_DATA,
     POST_SUCCESS,
-    POST_FAIL
+    POST_FAIL,
+    PUT_DATA,
+    PUT_SUCCESS,
+    PUT_FAIL
 
 } from '../actions';
 
@@ -52,6 +55,28 @@ const smurfReducer = (state = initialState, action) => {
                 errors: ''
             }
         case POST_FAIL:
+            return {
+                ...state,
+                isPosting: false,
+                errors: action.payload
+            }
+        case PUT_DATA:
+            return {
+                ...state,
+                smurfs: [
+                    ...state.smurfs
+                ],
+                isPutting: true,
+                errors: ''
+            }
+        case PUT_SUCCESS:
+            return {
+                ...state,
+                smurfs: action.payload,
+                isPutting: false,
+                errors: ''
+            }
+        case PUT_FAIL: 
             return {
                 ...state,
                 isPosting: false,
